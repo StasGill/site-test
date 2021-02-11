@@ -1,0 +1,23 @@
+const ADDNEWNUMBER = "@addNewNumber";
+const DELETENUMBER = "@deleteNumber";
+const SETFILTER = "@setFilter";
+const SETWARNING = "@setWarning";
+const GETNEWNUMBER = "@GETNEWNUMBER";
+const SIGNUP = "@SIGNUP";
+const SIGNIN = "@SIGNIN";
+const SIGNOUT = "@SIGNOUT";
+const SETLOADING = "@SETLOADING";
+const SETERROR = "@SETERROR";
+
+export {
+  ADDNEWNUMBER,
+  DELETENUMBER,
+  SETFILTER,
+  SETWARNING,
+  GETNEWNUMBER,
+  SIGNUP,
+  SIGNIN,
+  SIGNOUT,
+  SETLOADING,
+  SETERROR,
+};
