@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Contacts from "../pages/Contacts";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -12,8 +12,9 @@ const main = ({ isAuth }) => {
       <Switch>
         <Route path="/" exact component={Home} />
         {isAuth && <Route path="/contacts" component={Contacts} />}
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        {!isAuth && <Route path="/login" component={Login} />}
+        {!isAuth && <Route path="/register" component={Register} />}
+        <Redirect to="/contacts" />
       </Switch>
     </Suspense>
   );

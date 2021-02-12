@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { signInOperation } from "../redux/operations/operations";
 import { signOut } from "../redux/actions/actions";
+import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 const initialState = {
   email: "",
   password: "",
 };
 
-const Login = () => {
+const Login = (isAuth, { history, location }) => {
   const [state, setState] = useState({ ...initialState });
   const dispatch = useDispatch();
 
@@ -19,14 +21,21 @@ const Login = () => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(signInOperation(state));
     setState({ ...initialState });
+    // history.push("/contacts");
   };
+  // const historyPush = () => {
+  //   history.push("/contacts");
+  // };
 
-  const onHandleLogout = () => {
-    dispatch(signOut());
-  };
+  // const onHandleLogout = () => {
+  //   dispatch(signOut());
+  // };
+
+  // useEffect(() => {
+
+  // }, [isAuth]);
 
   return (
     <>
@@ -54,13 +63,16 @@ const Login = () => {
           <button type="submit" className="handleButton">
             LOG IN
           </button>
-          <button type="" className="handleButton" onClick={onHandleLogout}>
-            LOG OUT
-          </button>
         </form>
       </div>
     </>
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.isAuth,
+  };
+};
+
+export default connect(mapStateToProps)(Login);

@@ -6,6 +6,7 @@ import {
   signIn,
   setError,
 } from "../../redux/actions/actions";
+import { Route, Switch } from "react-router-dom";
 
 const addNewNumberOperation = (number) => async (dispatch, getState) => {
   const idToken = getState().idToken;
@@ -23,11 +24,10 @@ const addNewNumberOperation = (number) => async (dispatch, getState) => {
 const deleteNumberOperation = (id) => (dispatch, getState) => {
   const idToken = getState().idToken;
   try {
-    axios
-      .delete(
-        `https://socialprofile-96fb9-default-rtdb.firebaseio.com/numbers/${id}.json?auth=${idToken}`
-      )
-      .then(() => console.log(" "));
+    axios.delete(
+      `https://socialprofile-96fb9-default-rtdb.firebaseio.com/numbers/${id}.json?auth=${idToken}`
+    );
+    // .then(() => console.log(" "));
   } catch (error) {
     console.log(error);
   } finally {
@@ -64,7 +64,7 @@ const signUpOperation = (user) => async (dispatch) => {
       }
     );
     dispatch(signUp(response.data));
-    console.log(response.data);
+    // console.log(response.data);
   } catch (error) {
     dispatch(setError(error));
   } finally {
